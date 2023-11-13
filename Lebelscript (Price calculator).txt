@@ -1,0 +1,45 @@
+var objs = payload.DeepDetect.obj_count;
+var len = objs.length;
+
+var cancount = 0;
+var bottlecount = 0;
+var smallbottlecount = 0;
+var spraynocap = 0;
+var spray = 0
+
+var can_price = 0; //2
+var bottle_price = 0; //5
+var small_price = 0; //3
+var spray_price = 0; //1
+var spraynocap_price = 0; //6
+var full_price = 0;
+
+for (var i = 0; i < len; i++) {
+    if (objs[i].name == "can") {
+        label = "กระป๋อง" + objs[i].count + "อัน";
+        cancount += objs[i].count;
+        can_price = (cancount * 1).toFixed(2);
+    } 
+     else if (objs[i].name == " bottle"){
+        label = "ขวดใหญ่" + objs[i].count + "ขวด";
+        bottlecount += objs[i].count;
+        bottle_price = (bottlecount * 0.7).toFixed(2);
+    }
+     else if (objs[i].name == "small bottle") {
+        label = "ขวดเล็ก" + objs[i].count + "ขวด";
+        smallbottlecount += objs[i].count;
+        small_price = (smallbottlecount * 0.25).toFixed(2);
+    }
+      else if (objs[i].name == "spray not cap") {
+        label = "กระป๋องไม่มีฝา" + objs[i].count + "อัน";
+        spraynocap += objs[i].count;
+        spraynocap_price = (spraynocap * 1.25).toFixed(2);
+    }
+      else if (objs[i].name == "spray") {
+        label = "กระป๋องมีฝา" + objs[i].count + "อัน";
+        spray += objs[i].count;
+        spray_price = (spray * 1.5).toFixed(2);
+    }
+        full_price = (parseFloat(can_price) + parseFloat(bottle_price) + parseFloat(small_price) + parseFloat(spraynocap_price) + parseFloat(spray_price)).toFixed(2);
+}
+label = "ราคากระป๋อง" + can_price + "บาท\n" + "ราคาใหญ่" + bottle_price + "บาท\n" + "ราคาขวดเล็ก" + small_price + "บาท\n" + "ราคากระป๋องไม่มีฝา" + spraynocap_price + "บาท\n" + "ราคากระป๋องมีฝา" + spray_price + "บาท\nราคาทั้งหมด" + full_price + "บาท"

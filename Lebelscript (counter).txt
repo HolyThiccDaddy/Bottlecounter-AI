@@ -1,0 +1,35 @@
+//LEBEL SCRIPT (Can,Big Bottle, Small Bottle, Spray, Spray without cap)
+var objs = payload.DeepDetect.obj_count;
+var len = objs.length;
+
+var cancount = 0;
+var bottlecount = 0;
+var smallbottlecount = 0;
+var spraynocap = 0;
+var spray = 0;
+var price = 0;
+
+for (var i = 0; i < len; i++) {
+    if (objs[i].name == "can") {
+        label = "กระป๋อง" + objs[i].count + "อัน";
+        cancount += objs[i].count;
+    } 
+     else if (objs[i].name == " bottle"){
+        label = "ขวดใหญ่" + objs[i].count + "ขวด";
+        bottlecount += objs[i].count;
+    }
+     else if (objs[i].name == "small bottle") {
+        label = "ขวดเล็ก" + objs[i].count + "ขวด";
+        smallbottlecount += objs[i].count;
+    }
+      else if (objs[i].name == "spray not cap") {
+        label = "กระป๋องไม่มีฝา" + objs[i].count + "อัน";
+        spraynocap += objs[i].count;
+    }
+      else if (objs[i].name == "spray") {
+        label = "กระป๋องมีฝา" + objs[i].count + "อัน";
+        spray += objs[i].count;
+    }
+}
+
+label = "กระป๋อง" +  (cancount) + "อัน\nขวดใหญ่" + (bottlecount) +"ขวด\nขวดเล็ก" + (smallbottlecount) + "ขวด\nสเปรย์ไม่มีฝา" + (spraynocap) + "อัน\nสเปรย์มีฝา" + (spray) + "อัน"
